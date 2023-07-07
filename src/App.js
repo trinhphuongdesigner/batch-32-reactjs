@@ -1,4 +1,5 @@
 import './App.css';
+import Button from './components/button';
 import Layout from './components/layer';
 
 function App() { // = Home Page
@@ -13,7 +14,11 @@ function App() { // = Home Page
           height: "500px",
           backgroundColor: "violet",
         }}>
-          Main content
+          <Button
+            icon={<i class="fa-brands fa-apple fa-xl" />}
+            name="Continue with Apple"
+            classes="bg-black"
+          />
         </main>
       </Layout>
     </div>
