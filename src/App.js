@@ -1,22 +1,18 @@
-import logo from './logo.svg';
 import './App.css';
-import Header from './components/layer/header';
-import Footer from './components/layer/footer';
+import Layout from './components/layer';
 
 function App() { // = Home Page
   return (
     <div className="App">
-      <Header />
-
-      <main style={{
-        width: "100%",
-        height: "500px",
-        backgroundColor: "violet",
+      <Layout title="Xin chào, đây là header!" content="xxx">
+        <main style={{
+          width: "100%",
+          height: "500px",
+          backgroundColor: "violet",
         }}>
-        Hello
-      </main>
-
-      <Footer />
+          Main content
+        </main>
+      </Layout>
     </div>
   );
 }

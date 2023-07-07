@@ -1,9 +1,12 @@
 import './header.css';
 
-function Header() {
+function Header(props) {
+  const { data } = props;
+
   return (
     <header className="App-header header-format">
-      Header
+      <div>{data.title}</div>
+      <div>{data.content}</div>
     </header>
   )
 }
