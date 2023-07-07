@@ -4,7 +4,10 @@ import Layout from './components/layer';
 function App() { // = Home Page
   return (
     <div className="App">
-      <Layout title="Xin chào, đây là header!" content="xxx">
+      <Layout
+        headerTitle="Xin chào, đây là header!"
+        footerTitle="Xin chào, đây là footer!"
+      >
         <main style={{
           width: "100%",
           height: "500px",

@@ -1,12 +1,11 @@
 import './header.css';
 
 function Header(props) {
-  const { data } = props;
+  const { title } = props;
 
   return (
     <header className="App-header header-format">
-      <div>{data.title}</div>
-      <div>{data.content}</div>
+      <div>{title}</div>
     </header>
   )
 }

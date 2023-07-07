@@ -2,9 +2,15 @@ import React from 'react';
 import Header from './header';
 import Footer from './footer';
 
-function Layout(props) {
+// function Layout(props) {
+//   const {
+//     children,
+//     headerTitle,
+//     footerTitle,
+//   } = props;
+  function Layout({ children, headerTitle, footerTitle }) {
 
-  console.log('««««« props »»»»»', props);
+  // console.log('««««« props »»»»»', props);
   // const children = props.children; 
   // const title = props.title;
   // const content = props.content;
@@ -12,7 +18,7 @@ function Layout(props) {
   // = const { children } = props;
   // const content = props.children;
   // const { children: content } = props;
-  const { children, ...data } = props;
+  // const { children, ...data } = props;
 
   return (
     // <React.Fragment>
@@ -20,9 +26,9 @@ function Layout(props) {
     //   <Footer />
     // </React.Fragment>
     <>
-      <Header data={data} />
+      <Header title={headerTitle} />
         {children}
-      <Footer />
+      <Footer title={footerTitle}/>
     </>
   );
 }

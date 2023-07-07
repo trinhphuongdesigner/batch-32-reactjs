@@ -1,9 +1,9 @@
 import './footer.css';
 
-function Footer(props) {
+function Footer({ title }) {
   return (
     <footer className="footer-format">
-      Footer
+      <div>{title}</div>
     </footer>
   );
 }
