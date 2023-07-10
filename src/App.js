@@ -1,5 +1,6 @@
 import './App.css';
 import Button from './components/button';
+import CardList from './components/cardList';
 import Layout from './components/layer';
 
 function App() { // = Home Page
@@ -9,16 +10,13 @@ function App() { // = Home Page
         headerTitle="Xin chào, đây là header!"
         footerTitle="Xin chào, đây là footer!"
       >
-        <main style={{
-          width: "100%",
-          height: "500px",
-          backgroundColor: "violet",
-        }}>
-          <Button
+        <main className="container">
+          {/* <Button
             icon={<i class="fa-brands fa-apple fa-xl" />}
             name="Continue with Apple"
             classes="bg-black"
-          />
+          /> */}
+          <CardList />
         </main>
       </Layout>
     </div>
