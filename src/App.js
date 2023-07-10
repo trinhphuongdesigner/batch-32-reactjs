@@ -16,7 +16,8 @@ function App() { // = Home Page
             name="Continue with Apple"
             classes="bg-black"
           /> */}
-          <CardList />
+          <CardList title="Nhân viên xuất sắc" />
+          <CardList title="Nhân viên ưu tú" />
         </main>
       </Layout>
     </div>

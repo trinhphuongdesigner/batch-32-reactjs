@@ -1,30 +1,24 @@
 import React from 'react';
 
 import './card.css';
+import Button from '../button';
 
-function Card({
-  image,
-  name,
-  role,
-  birthday,
-  mark,
-  edu,
-  address,
-  email,
-  phone,
-}) {
+function Card({ info, onPlusAge, onMinusAge }) {
+  const { image, name, role, birthday, mark, edu, address, email, phone, age } = info;
   return (
     <div className="card d-flex">
-      <img
-        className="picture"
-        src={image}
-        alt="demo pic"
-      />
+      <img className="picture" src={image} alt="demo pic" />
 
-      <div className="intro">
+      <div className="intro d-flex flex-column align-items-center">
         <h4 className="display-one-line">{name}</h4>
 
         <p className="display-one-line">{role}</p>
+
+        <p className="display-one-line mt-3">{age}</p>
+
+        <button onClick={onPlusAge} className="btn btn-primary mt-3 w-auto">Già thêm 1 tuổi</button>
+
+        <button onClick={onMinusAge} className="btn btn-secondary mt-3 w-auto">Trẻ đi 1 tuổi</button>
       </div>
 
       <div className="info-warpper">
