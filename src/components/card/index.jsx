@@ -1,9 +1,8 @@
 import React from 'react';
 
 import './card.css';
-import Button from '../button';
 
-function Card({ info, onPlusAge, onMinusAge }) {
+function Card({ info, onPlusAge, onMinusAge, onReset }) {
   const { image, name, role, birthday, mark, edu, address, email, phone, age } = info;
   return (
     <div className="card d-flex">
@@ -19,6 +18,8 @@ function Card({ info, onPlusAge, onMinusAge }) {
         <button onClick={onPlusAge} className="btn btn-primary mt-3 w-auto">Già thêm 1 tuổi</button>
 
         <button onClick={onMinusAge} className="btn btn-secondary mt-3 w-auto">Trẻ đi 1 tuổi</button>
+
+        <button onClick={onReset} className="btn btn-danger mt-3 w-auto">Hồi sinh</button>
       </div>
 
       <div className="info-warpper">

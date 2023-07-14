@@ -18,7 +18,7 @@ const userInfo = {
 };
 
 function CardList(props) {
-  const [user, setUser] = useState(userInfo);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     // setUser({
@@ -33,10 +33,7 @@ function CardList(props) {
     //   })
     // })
 
-    setUser((preState) => ({
-      ...preState,
-      name: "TRINH DINH PHUONG",
-    }));
+    setUser(userInfo);
   }, []);
 
   const onPlusAge = () => {
@@ -53,7 +50,9 @@ function CardList(props) {
     }));
   }
 
-  console.log('««««« user »»»»»', user);
+  const onReset = () => {
+    setUser(userInfo);
+  }
 
   return (
     <>
@@ -64,6 +63,7 @@ function CardList(props) {
           info={user}
           onPlusAge={onPlusAge}
           onMinusAge={onMinusAge}
+          onReset={onReset}
         />
       </div>
 
