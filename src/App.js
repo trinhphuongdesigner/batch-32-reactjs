@@ -3,6 +3,7 @@ import Button from './components/button';
 import ButtonAccordions from './components/buttonAccordions';
 import CardList from './components/cardList';
 import Layout from './components/layer';
+import PlayList from './components/playList';
 
 function App() { // = Home Page
   return (
@@ -22,7 +23,9 @@ function App() { // = Home Page
     //   </Layout>
     // </div>
     // <CardList title="Nhân viên xuất sắc" />
-    <ButtonAccordions />
+    // <ButtonAccordions />
+
+    <PlayList />
   );
 }
 
