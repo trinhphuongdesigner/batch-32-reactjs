@@ -123,6 +123,7 @@
 .musicSpace .play-btn.pause {
   animation: pulse 2s linear infinite;
 }
+
 @keyframes pulse {
   0% {
     box-shadow: 0;

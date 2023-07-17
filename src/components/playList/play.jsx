@@ -33,45 +33,43 @@ export default function Play(props) {
     audioRef.current.currentTime = event.target.value;
   }, []);
 
+  const getTrackLength = () => {
+    audioRef.current.addEventListener('loadedmetadata', function () {
+      // Thân hàm
+      setDuration(audioRef.current.duration);
+    });
+  }
+
   useEffect(() => {
-    function getTrackLength() {
-      audioRef.current.addEventListener('loadedmetadata', function () {
-        console.log('««««« audioRef.current.duration »»»»»', audioRef.current.duration);
-        setDuration(audioRef.current.duration);
-      });
-    }
-
     getTrackLength();
-
-    // if (audioRef.current) {
-    //   getTrackLength(audioRef.current);
-    // }
   }, []);
 
   const getDuration = (duration) => {
     const minutes = Math.floor(duration / 60); // Số phút
     const seconds = Math.floor(duration % 60); // Số giây
-  
+
     const formattedDuration = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  
+
     return formattedDuration;
-  }
+  };
 
   const onUpdateTimer = useCallback(() => {
     setTimer(audioRef.current.currentTime);
   }, []);
 
   const onTogglePlayMusic = useCallback(() => {
-      if (isPlaying) {
-        audioRef.current.pause(); // Pause the song if it is playing
-      } else {
-        audioRef.current.play(); // Play the song if it is paused
-      }
+    if (isPlaying) {
+      audioRef.current.pause(); // Pause the song if it is playing
+    } else {
+      audioRef.current.play(); // Play the song if it is paused
+    }
 
-      setIsPlaying((prevState) => !prevState);
-    },
-    [isPlaying],
-  );
+    setIsPlaying((prev) => !prev);
+  }, [isPlaying]);
+
+  const onReloadMusic = () => {
+    audioRef.current.load();
+  };
 
   return (
     <div className="musicSpace">
@@ -105,6 +103,7 @@ export default function Play(props) {
           <button className="btn backward-btn">
             <i className="fa-solid fa-caret-left"></i>
           </button>
+          {/* Play or pause */}
           <button className="play-btn pause" onClick={onTogglePlayMusic}>
             {isPlaying ? (
               <i className="fa-solid fa-pause fa-2xl"></i>
@@ -114,6 +113,9 @@ export default function Play(props) {
           </button>
           <button className="btn forward-btn">
             <i className="fa-solid fa-caret-right"></i>
+          </button>
+          <button className="btn forward-btn" onClick={onReloadMusic}>
+            <i className="fa fa-refresh" aria-hidden="true"></i>
           </button>
         </div>
 

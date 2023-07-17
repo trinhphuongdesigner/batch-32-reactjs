@@ -14,7 +14,7 @@ function App() { // = Home Page
     //   >
     //     <main className="container">
     //       {/* <Button
-    //         icon={<i class="fa-brands fa-apple fa-xl" />}
+    //         icon={<i className="fa-brands fa-apple fa-xl" />}
     //         name="Continue with Apple"
     //         classes="bg-black"
     //       /> */}

@@ -13,9 +13,9 @@ export const ratingStar = (rate) => {
 
   for (let i = 1; i <= 5; i++) {
     if (i <= rate) {
-      stars.push(<i class="fa-solid fa-star"></i>);
+      stars.push(<i className="fa-solid fa-star"></i>);
     } else {
-      stars.push(<i class="fa-regular fa-star"></i>);
+      stars.push(<i className="fa-regular fa-star"></i>);
     }
   }
 
