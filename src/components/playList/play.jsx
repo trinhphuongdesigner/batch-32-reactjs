@@ -7,17 +7,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 
 import './music.css';
 
-const music = {
-  id: 6,
-  name: 'YeuAnhDiMeAnhBanBanhMi',
-  cover: require('../../assets/music/1.jpg'),
-  src: require('../../assets/music/YeuAnhDiMeAnhBanBanhMi-PhucDu-8698703.mp3'),
-  artist: 'NF Real 6',
-  isLiked: false,
-};
-
-export default function Play(props) {
-  const { name, artist, cover, id, src } = music;
+export default function Play({ name, artist, cover, id, src, onPrevMusic, onNextMusic }) {
 
   const audioRef = useRef();
 
@@ -25,9 +15,9 @@ export default function Play(props) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
 
-  // useEffect(() => {
-  //   setIsPlaying(false);
-  // }, [id]);
+  useEffect(() => {
+    setIsPlaying(false);
+  }, [id]);
 
   const onChangeSlider = useCallback((event) => {
     audioRef.current.currentTime = event.target.value;
@@ -100,7 +90,7 @@ export default function Play(props) {
         </div>
 
         <div className="controls">
-          <button className="btn backward-btn">
+          <button className="btn backward-btn" onClick={onPrevMusic}>
             <i className="fa-solid fa-caret-left"></i>
           </button>
           {/* Play or pause */}
@@ -111,7 +101,7 @@ export default function Play(props) {
               <i className="fa-solid fa-play fa-2xl"></i>
             )}
           </button>
-          <button className="btn forward-btn">
+          <button className="btn forward-btn" onClick={onNextMusic}>
             <i className="fa-solid fa-caret-right"></i>
           </button>
           <button className="btn forward-btn" onClick={onReloadMusic}>
@@ -120,13 +110,13 @@ export default function Play(props) {
         </div>
 
         <audio
-          // className="d-none"
+          className="d-none"
           controls
           src={src}
           id="audioPlay"
           ref={audioRef}
           onTimeUpdate={onUpdateTimer}
-          // onEnded={} handle next song
+          onEnded={onNextMusic} // handle next song
         />
       </div>
     </div>
