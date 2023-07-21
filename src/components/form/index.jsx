@@ -12,6 +12,7 @@ const Form = () => {
       firstName: '',
       lastName: '',
       confirmPassword: '',
+      age: 18,
     },
 
     validationSchema: Yup.object({
@@ -21,6 +22,8 @@ const Form = () => {
       //   .required('Eh điền đi mày'),
 
       email: Yup.string().email('Invalid email format').required('Required!'),
+
+      age: Yup.number().min(0).required('điền tuổi!'),
 
       firstName: Yup.string()
       .min(2, 'Mininum 2 characters')
@@ -47,9 +50,13 @@ const Form = () => {
     },
   });
 
-  console.log('««««« validation.errors »»»»»', validation.errors);
-  console.log('««««« validation.touched »»»»»', validation.touched);
-  // console.log('««««« validation »»»»»', validation);
+  const onChangeAge = (e) => {
+    validation.setFieldValue('age', +e.target.value);
+  }
+
+  const onBlurAge = () => {
+    validation.setFieldTouched('age', true);
+  }
 
   return (
     <div>
@@ -85,6 +92,15 @@ const Form = () => {
           type="confirmPassword"
           name="confirmPassword"
           validation={validation}
+        />
+
+        <input
+          type="text"
+          name="age"
+          // validation={validation}
+          value={validation.values.age}
+          onChange={onChangeAge}
+          onBlur={onBlurAge}
         />
         <button onClick={validation.handleSubmit}>Click to submit</button>
       </div>
