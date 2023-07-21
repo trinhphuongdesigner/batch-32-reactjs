@@ -12,8 +12,8 @@ function InputGroup({
       {label}:
       <input
         type={type}
-        name={name}
         placeholder={placeholder}
+        name={name}
         value={validation.values[name]} // validation.values.email
         onChange={validation.handleChange}
         onBlur={validation.handleBlur}
