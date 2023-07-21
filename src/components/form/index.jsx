@@ -1,60 +1,93 @@
 import React, { useState } from 'react';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
 import InputGroup from 'components/form/inputGroup';
 
 const Form = () => {
-  const [user, setUser] = useState({
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-  })
+  const validation = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      confirmPassword: '',
+    },
 
-  const onSubmitForm = (e) => {
-    e.preventDefault();
-    console.log('««««« user »»»»»', user);
-  };
+    validationSchema: Yup.object({
+      // username: Yup.string()
+      //   .min(6, 'Mininum 6 characters')
+      //   .max(12, 'Maximum 12 characters')
+      //   .required('Eh điền đi mày'),
 
-  const onChangeInput = (value, name) => {
-    setUser((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+      email: Yup.string().email('Invalid email format').required('Required!'),
+
+      firstName: Yup.string()
+      .min(2, 'Mininum 2 characters')
+      .max(50, 'Maximum 50 characters')
+      .required('Required tên!'),
+
+      lastName: Yup.string()
+      .min(2, 'Mininum 2 characters')
+      .max(50, 'Maximum 50 characters')
+      .required('Required họ!'),
+
+      password: Yup.string()
+        .min(6, 'Minimum 6 characters')
+        .max(12, 'Minimum 12 characters')
+        .required('Required!'),
+
+      confirmPassword: Yup.string()
+        .oneOf([Yup.ref('password')], "Password's not match")
+        .required('Required nhập lại MK'),
+    }),
+
+    onSubmit: (values) => {
+      console.log('««««« values »»»»»', values);
+    },
+  });
+
+  console.log('««««« validation.errors »»»»»', validation.errors);
+  console.log('««««« validation.touched »»»»»', validation.touched);
+  // console.log('««««« validation »»»»»', validation);
 
   return (
     <div>
       <h1>Form group</h1>
-      <form className="d-flex flex-column" onSubmit={onSubmitForm}>
+      <div className="d-flex flex-column" >
         <InputGroup
-          label="Username"
-          name="username"
-          value={user.username}
-          onChange={onChangeInput}
+          label="Email"
+          name="email"
+          validation={validation}
         />
 
         <InputGroup
           label="First name"
           name="firstName"
-          value={user.firstName}
-          onChange={onChangeInput}
+          validation={validation}
         />
 
         <InputGroup
           label="Last name"
           name="lastName"
-          value={user.lastName}
-          onChange={onChangeInput}
+          validation={validation}
         />
 
         <InputGroup
           label="password"
           type="password"
           name="password"
-          value={user.password}
-          onChange={onChangeInput}
+          validation={validation}
         />
-        <input type="submit" value="Submit" />
-      </form>
+
+        <InputGroup
+          label="confirmPassword"
+          type="confirmPassword"
+          name="confirmPassword"
+          validation={validation}
+        />
+        <button onClick={validation.handleSubmit}>Click to submit</button>
+      </div>
     </div>
   );
 };

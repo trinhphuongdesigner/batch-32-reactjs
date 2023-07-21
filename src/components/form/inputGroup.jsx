@@ -4,9 +4,8 @@ function InputGroup({
   label,
   type = 'text',
   name,
-  value,
   placeholder = 'Please type in here',
-  onChange,
+  validation,
 }) {
   return (
     <label>
@@ -15,8 +14,10 @@ function InputGroup({
         type={type}
         name={name}
         placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value, name)}
+        value={validation.values[name]} // validation.values.email
+        onChange={validation.handleChange}
+        onBlur={validation.handleBlur}
+        // validation={(e) => validation(e.target.value, name)}
       />
     </label>
   );
