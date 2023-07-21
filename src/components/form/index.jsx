@@ -1,117 +1,62 @@
 import React, { useState } from 'react';
+import InputGroup from 'components/form/inputGroup';
 
 const Form = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+    firstName: '',
+    lastName: '',
+  })
 
   const onSubmitForm = (e) => {
     e.preventDefault();
-    const data = {
-      username,
-      password,
-    };
+    console.log('««««« user »»»»»', user);
   };
 
-  const onChangeUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const onChangePass = (e) => {
-    console.log('««««« asdasd »»»»»');
-    setPassword(e.target.value);
-  };
-
-  const onChangeFirstName = (e) => {
-    setFirstName(e.target.value);
-  };
-
-  const onChangeLastName = (e) => {
-    setLastName(e.target.value);
+  const onChangeInput = (value, name) => {
+    setUser((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   return (
     <div>
       <h1>Form group</h1>
       <form className="d-flex flex-column" onSubmit={onSubmitForm}>
-        <Input
+        <InputGroup
           label="Username"
           name="username"
-          value={username}
-          onChange={onChangeUsername}
+          value={user.username}
+          onChange={onChangeInput}
         />
 
-        <Input
+        <InputGroup
           label="First name"
           name="firstName"
-          value={firstName}
-          onChange={onChangeFirstName}
+          value={user.firstName}
+          onChange={onChangeInput}
         />
 
-        <Input
+        <InputGroup
           label="Last name"
           name="lastName"
-          value={lastName}
-          onChange={onChangeLastName}
+          value={user.lastName}
+          onChange={onChangeInput}
         />
 
-        <Input
+        <InputGroup
           label="password"
           type="password"
           name="password"
-          value={password}
-          onChange={onChangePass}
+          value={user.password}
+          onChange={onChangeInput}
         />
         <input type="submit" value="Submit" />
       </form>
-
-      <h1>Input group</h1>
-      <div className="d-flex flex-column">
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            value={username}
-            onChange={onChangeUsername}
-          />
-        </label>
-        <label>
-          password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChangePass}
-          />
-        </label>
-        <button onClick={onSubmitForm}>Submit</button>
-      </div>
     </div>
   );
 };
 
 export default Form;
-
-const Input = ({
-  label,
-  type = 'text',
-  name,
-  value,
-  placeholder = 'Please type in here',
-  onChange,
-}) => {
-  return (
-    <label>
-      {label}:
-      <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-      />
-    </label>
-  );
-};
