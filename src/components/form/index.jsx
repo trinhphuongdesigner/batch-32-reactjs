@@ -4,6 +4,8 @@ import { useFormik } from 'formik';
 
 import InputGroup from 'components/form/inputGroup';
 
+import './form.css';
+
 const Form = () => {
   const validation = useFormik({
     initialValues: {
@@ -12,6 +14,7 @@ const Form = () => {
       firstName: '',
       lastName: '',
       confirmPassword: '',
+      phoneNumber: '',
       age: 18,
     },
 
@@ -21,7 +24,16 @@ const Form = () => {
       //   .max(12, 'Maximum 12 characters')
       //   .required('Eh điền đi mày'),
 
-      email: Yup.string().email('Invalid email format').required('Required!'),
+      email: Yup.string().email('Email không hợp lệ').required('Vui lòng điền email'),
+
+      phoneNumber: Yup
+        .string()
+        .matches(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g, 'Số điện thoại sai rồi')
+        // .test("phoneErr", "Số điện thoại sai rồi", (value) => {
+        //   const regex = new RegExp(/(84|0[3|5|7|8|9])+([0-9]{8})\b/g);
+        //   return regex.test(value);
+        // })
+        .required('Required!'),
 
       age: Yup.number().min(0).required('điền tuổi!'),
 
@@ -66,6 +78,17 @@ const Form = () => {
           label="Email"
           name="email"
           validation={validation}
+          // classes="invalid"
+          // classes={isValidEmail() ? "valid" : "invalid"}
+        />
+
+        {/* {isValidEmail && <p className="text-danger">{validation.errors.email}</p>} */}
+
+        <InputGroup
+          label="Phone"
+          name="phoneNumber"
+          validation={validation}
+          classes="valid"
         />
 
         <InputGroup
