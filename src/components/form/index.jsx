@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 
 import InputGroup from 'components/form/inputGroup';
-
-import './form.css';
 
 const Form = () => {
   const validation = useFormik({
@@ -62,13 +60,13 @@ const Form = () => {
     },
   });
 
-  const onChangeAge = (e) => {
+  const onChangeAge = useCallback((e) => {
     validation.setFieldValue('age', +e.target.value);
-  }
+  }, [validation]);
 
-  const onBlurAge = () => {
+  const onBlurAge = useCallback(() => {
     validation.setFieldTouched('age', true);
-  }
+  }, [validation])
 
   return (
     <div>

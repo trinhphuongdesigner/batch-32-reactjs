@@ -1,4 +1,5 @@
-import Form from 'components/form';
+import Images from 'components/images';
+// import Form from 'components/form';
 // import Button from 'components/button';
 // import ButtonAccordions from 'components/buttonAccordions';
 // import CardList from 'components/cardList';
@@ -28,7 +29,8 @@ function App() { // = Home Page
     // <ButtonAccordions />
 
     // <PlayList />
-    <Form />
+    // <Form />
+    <Images />
   );
 }
 
