@@ -15,21 +15,35 @@ const imageList = [
 ]
 
 function Images(props) {
-  const [index, setIndex] = useState(0);
+  const [state, setState] = useState({
+    index: 0,
+  });
 
   const onNextImage = () => {
-    if (index + 1  < imageList.length) {
-      setIndex((prev) => prev + 1)
+    if (state.index + 1  < imageList.length) {
+      setState((prev) => ({
+        ...prev,
+        index: prev.index + 1,
+      }))
     } else {
-      setIndex(0)
+      setState((prev) => ({
+        ...prev,
+        index: 0,
+      }))
     }
   }
 
   const onPreviousImage = () => {
-    if (index - 1  >= 0) {
-      setIndex((prev) => prev - 1);
+    if (state.index - 1  >= 0) {
+      setState((prev) => ({
+        ...prev,
+        index: prev.index - 1,
+      }));
     } else {
-      setIndex(imageList.length - 1);
+      setState((prev) => ({
+        ...prev,
+        index: imageList.length - 1,
+      }))
     }
   };
 
@@ -43,11 +57,11 @@ function Images(props) {
           borderRadius: '5px',
           marginBottom: '20px',
         }}
-        src={imageList[index]}
+        src={imageList[state.index]}
         alt="anh xem cho vui"
       />
 
-      <h5>{index + 1}/{imageList.length}</h5>
+      <h5>{state.index + 1}/{imageList.length}</h5>
 
       <div style={{
         display: 'flex'
