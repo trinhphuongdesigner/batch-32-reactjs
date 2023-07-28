@@ -6,6 +6,7 @@
 // import Layout from 'components/layer';
 // import PlayList from 'components/playList';
 import LoginForm from 'components/form/login';
+import ProductList from 'components/product/productList';
 
 import './App.css';
 
@@ -32,7 +33,10 @@ function App() { // = Home Page
     // <PlayList />
     // <Form />
     // <Images />
-    <LoginForm />
+    <>
+      {/* <LoginForm /> */}
+      <ProductList />
+    </>
   );
 }
 

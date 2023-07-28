@@ -7,8 +7,7 @@ function LoginForm(props) {
     password: '',
   });
 
-  console.log('««««« user »»»»»', user);
-
+  // V1
   // const onLogin = (e) => {
   //   e.preventDefault();
   
@@ -32,19 +31,34 @@ function LoginForm(props) {
   //     });
   // };
 
-  const onLogin = (e) => {
-    e.preventDefault();
+  // V2
+  // const onLogin = (e) => {
+  //   e.preventDefault();
   
-    const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
+  //   const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
 
-    axios
-    .post(url, user)
-    .then((result) => {
-      console.log(result.data);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+  //   axios
+  //   .post(url, user)
+  //   .then((result) => {
+  //     console.log(result.data);
+  //   })
+  //   .catch((err) => {
+  //     console.error(err);
+  //   });
+  // };
+
+  // V3
+  const onLogin = async (e) => {
+    e.preventDefault();
+
+    const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
+    try {
+      const response = await axios.post(url, user);
+
+      localStorage.setItem("TOKEN", response.data.token);
+    } catch (error) {
+      console.log('««««« error »»»»»', error);
+    }
   };
 
   const onChange = (e, fieldName) => {
