@@ -2,21 +2,19 @@ import React, { useState } from 'react';
 
 import { axiosClient } from 'helper/axiosClient';
 
-function LoginPage(props) {
+function RegisterPage(){ 
   const [user, setUser] = useState({
     email: '',
     password: '',
+    confirmPassword: '',
   });
 
-  const onLogin = async (e) => {
+  const onRegister = async (e) => {
     e.preventDefault();
 
-    const url = '/admin/employees/login';
+    const url = '/admin/employees';
     try {
-      const response = await axiosClient.post(url, user);
-
-      localStorage.setItem('TOKEN', response.data.token);
-      localStorage.setItem('REFRESH_TOKEN', response.data.refreshToken);
+      await axiosClient.post(url, user);
     } catch (error) {
       console.log('««««« error »»»»»', error);
     }
@@ -31,8 +29,8 @@ function LoginPage(props) {
 
   return (
     <>
-      <h1>Đăng nhập</h1>
-      <form className="p-5" onSubmit={onLogin}>
+      <h1>Đăng kí</h1>
+      <form className="p-5" onSubmit={onRegister}>
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
             Email address
@@ -62,6 +60,20 @@ function LoginPage(props) {
           />
         </div>
 
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label">
+            Re-Password
+          </label>
+
+          <input
+            type="password"
+            className="form-control"
+            id="exampleInputPassword1"
+            value={user.confirmPassword}
+            onChange={(e) => onChange(e, 'confirmPassword')}
+          />
+        </div>
+
         <button type="submit" className="btn btn-primary">
           Submit
         </button>
@@ -70,4 +82,4 @@ function LoginPage(props) {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;

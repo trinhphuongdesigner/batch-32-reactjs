@@ -53,7 +53,7 @@ const listMusic = [
   },
 ]
 
-function PlayList(props) {
+function PlayListPage(props) {
   const [selectedMusic, setSelectedMusic] = useState(listMusic[0]);
   
   const onSelectMusic = (selectedId) => { // nhận selectedId
@@ -98,4 +98,4 @@ function PlayList(props) {
   );
 }
 
-export default PlayList;
+export default PlayListPage;
