@@ -16,6 +16,7 @@ import NonAuthLayout from 'components/layer/nonAuth';
 
 
 import './App.css';
+import NotFoundPage from 'pages/404';
 
 function App() { // = Home Page
   return (
@@ -38,6 +39,7 @@ function App() { // = Home Page
           <Route path="button-accordion" element={<ButtonAccordions />} />
           <Route path="form" element={<Form />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {/* <div className="App">
         <AuthLayout
