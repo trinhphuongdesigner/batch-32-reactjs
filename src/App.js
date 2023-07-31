@@ -1,3 +1,5 @@
+import { Routes, Route } from 'react-router-dom';
+
 // import Images from 'components/images';
 // import Form from 'components/form';
 // import Button from 'components/button';
@@ -5,13 +7,20 @@
 // import CardList from 'components/cardList';
 // import Layout from 'components/layer';
 // import PlayList from 'components/playList';
-import LoginForm from 'components/form/login';
-import ProductList from 'components/product/productList';
+
+import { LoginPage } from 'pages/login';
+import HomePage from 'pages/home';
+import { ProductListPage } from 'pages/products';
 
 import './App.css';
 
 function App() { // = Home Page
   return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/products" element={<ProductListPage />} />
+    </Routes>
     // <div className="App">
     //   <Layout
     //     headerTitle="Xin chào, đây là header!"
@@ -30,13 +39,7 @@ function App() { // = Home Page
     // <CardList title="Nhân viên xuất sắc" />
     // <ButtonAccordions />
 
-    // <PlayList />
     // <Form />
-    // <Images />
-    <>
-      <LoginForm />
-      <ProductList />
-    </>
   );
 }
 

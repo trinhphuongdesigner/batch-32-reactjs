@@ -7,7 +7,7 @@ function ProductList(props) {
 
   const getData = async () => {
     try {
-      const response = await axiosClient('/admin/products');
+      const response = await axiosClient('/user/products');
 
       setProduct(response.data.payload)
     } catch (error) {
