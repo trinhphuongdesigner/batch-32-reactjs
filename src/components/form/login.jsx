@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+
+import { axiosClient } from 'helper/axiosClient';
 
 function LoginForm(props) { 
   const [user, setUser] = useState({
@@ -7,55 +8,15 @@ function LoginForm(props) {
     password: '',
   });
 
-  // V1
-  // const onLogin = (e) => {
-  //   e.preventDefault();
-  
-  //   const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
-
-  //   fetch(url, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(user),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       // Xử lý kết quả JSON ở đây
-  //       console.log(json);
-  //     })
-  //     .catch((error) => {
-  //       // Nếu có lỗi
-  //       console.error(error);
-  //     });
-  // };
-
-  // V2
-  // const onLogin = (e) => {
-  //   e.preventDefault();
-  
-  //   const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
-
-  //   axios
-  //   .post(url, user)
-  //   .then((result) => {
-  //     console.log(result.data);
-  //   })
-  //   .catch((err) => {
-  //     console.error(err);
-  //   });
-  // };
-
-  // V3
   const onLogin = async (e) => {
     e.preventDefault();
 
-    const url = 'https://batch-293-0-nodejs.onrender.com/admin/employees/login';
+    const url = '/admin/employees/login';
     try {
-      const response = await axios.post(url, user);
+      const response = await axiosClient.post(url, user);
 
       localStorage.setItem("TOKEN", response.data.token);
+      localStorage.setItem("REFRESH_TOKEN", response.data.refreshToken);
     } catch (error) {
       console.log('««««« error »»»»»', error);
     }

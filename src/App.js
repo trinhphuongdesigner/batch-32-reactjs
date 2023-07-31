@@ -34,7 +34,7 @@ function App() { // = Home Page
     // <Form />
     // <Images />
     <>
-      {/* <LoginForm /> */}
+      <LoginForm />
       <ProductList />
     </>
   );
