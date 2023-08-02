@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { axiosClient } from 'helper/axiosClient';
+import { DEFAULT, LOCATION } from 'constants/index';
 
 function LoginPage(props) {
-  // const history = unstable_HistoryRouter();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
@@ -18,11 +18,11 @@ function LoginPage(props) {
     try {
       const response = await axiosClient.post(url, user);
 
-      localStorage.setItem('TOKEN', response.data.token);
-      localStorage.setItem('REFRESH_TOKEN', response.data.refreshToken);
+      localStorage.setItem(DEFAULT.TOKEN, response.data.token);
+      localStorage.setItem(DEFAULT.REFRESH_TOKEN, response.data.refreshToken);
 
       if (response && response.data.token) {
-        navigate('/');
+        navigate(LOCATION.HOME);
       }
     } catch (error) {
       console.log('««««« error »»»»»', error);
@@ -36,11 +36,11 @@ function LoginPage(props) {
     }));
   };
 
-  const token = localStorage.getItem("TOKEN");
+  const token = localStorage.getItem(DEFAULT.TOKEN);
 
   useEffect(() => {
     if (token) {
-      navigate('/');
+      navigate(LOCATION.HOME);
     }
   }, [navigate, token]);
 
