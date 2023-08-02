@@ -1,8 +1,11 @@
-.header-format {
+.navbar {
   width: 100%;
-  height: 50px;
-  background-color: blue;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.nav-link {
+  color: rgb(1, 144, 238) !important;
+}
+
+.nav-link.disabled {
+  color: gray !important;
 }

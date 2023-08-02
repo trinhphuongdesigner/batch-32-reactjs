@@ -9,6 +9,7 @@ export const LOCATION = {
   REGISTER: "/register",
   IMAGE: "/images",
   PRODUCT: "/products",
+  PRODUCT_DETAIL: "/products/:id",
   PLAY_LIST: "/play-list",
   CART_EMPLOYEE: "/cart-employee",
   CART_MANAGER: "/cart-manager",
@@ -28,10 +29,6 @@ export const NON_AUTH = [
 ];
 
 export const AUTH = [
-  {
-    path: LOCATION.HOME,
-    title: "Trang chủ",
-  },
   {
     path: LOCATION.IMAGE,
     title: "Hình ảnh",

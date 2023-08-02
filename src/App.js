@@ -8,6 +8,7 @@ import ImagePage from 'pages/image';
 import LoginPage from 'pages/login';
 import PlayListPage from 'pages/playList';
 import ProductListPage from 'pages/products';
+import ProductDetailPage from 'pages/productDetail';
 
 import ButtonAccordions from 'components/buttonAccordions';
 import Form from 'components/form';
@@ -49,6 +50,7 @@ function App() { // = Home Page
               <Route index element={<HomePage />} />
               <Route path={LOCATION.IMAGE} element={<ImagePage />} />
               <Route path={LOCATION.PRODUCT} element={<ProductListPage />} />
+              <Route path={LOCATION.PRODUCT_DETAIL} element={<ProductDetailPage />} />
               <Route path={LOCATION.PLAY_LIST} element={<PlayListPage />} />
               <Route path={LOCATION.CART_EMPLOYEE} element={<CartEmployeePage />} />
               <Route path={LOCATION.CART_MANAGER} element={<CartManagerPage />} />
