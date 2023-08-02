@@ -55,6 +55,11 @@ function App() { // = Home Page
               <Route path={LOCATION.BUTTON_ACCORDION} element={<ButtonAccordions />} />
               <Route path={LOCATION.FORM} element={<Form />} />
             </Route>
+
+            <Route index path={LOCATION.LOGIN} element={<LoginPage />} />
+
+            <Route path={LOCATION.REGISTER} element={<RegisterPage />} />
+
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )
