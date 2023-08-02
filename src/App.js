@@ -39,7 +39,7 @@ function App() { // = Home Page
           <Route path="button-accordion" element={<ButtonAccordions />} />
           <Route path="form" element={<Form />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
+        {/* <Route path="*" element={<NotFoundPage />} /> */}
       </Routes>
       {/* <div className="App">
         <AuthLayout

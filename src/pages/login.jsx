@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { axiosClient } from 'helper/axiosClient';
 
 function LoginPage(props) {
+  // const history = unstable_HistoryRouter();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -17,6 +20,10 @@ function LoginPage(props) {
 
       localStorage.setItem('TOKEN', response.data.token);
       localStorage.setItem('REFRESH_TOKEN', response.data.refreshToken);
+
+      if (response && response.data.token) {
+        navigate('/');
+      }
     } catch (error) {
       console.log('««««« error »»»»»', error);
     }
@@ -28,6 +35,14 @@ function LoginPage(props) {
       [fieldName]: e.target.value,
     }));
   };
+
+  const token = localStorage.getItem("TOKEN");
+
+  useEffect(() => {
+    if (token) {
+      navigate('/');
+    }
+  }, [navigate, token]);
 
   return (
     <>
