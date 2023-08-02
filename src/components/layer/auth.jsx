@@ -7,7 +7,7 @@ import Header from './header';
 
   return (
     <>
-      <Header title="Đây là trang chính" />
+      <Header />
 
       <div className="container-lg d-flex justify-content-center my-4">
         <Outlet />

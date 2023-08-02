@@ -38,24 +38,24 @@ function App() { // = Home Page
       {
         !token ? (
           <Routes>
-            <Route path="/" element={<NonAuthLayout />} >
-              <Route index path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+            <Route path={LOCATION.HOME} element={<NonAuthLayout />} >
+              <Route index path={LOCATION.LOGIN} element={<LoginPage />} />
+              <Route path={LOCATION.REGISTER} element={<RegisterPage />} />
             </Route>
           </Routes>
         ) : (
           <Routes>
-            <Route path='/' element={<AuthLayout />}>
+            <Route path={LOCATION.HOME} element={<AuthLayout />}>
               <Route index element={<HomePage />} />
-              <Route path="images" element={<ImagePage />} />
-              <Route path="products" element={<ProductListPage />} />
-              <Route path="play-list" element={<PlayListPage />} />
-              <Route path="cart-employee" element={<CartEmployeePage />} />
-              <Route path="cart-manager" element={<CartManagerPage />} />
-              <Route path="button-accordion" element={<ButtonAccordions />} />
-              <Route path="form" element={<Form />} />
+              <Route path={LOCATION.IMAGE} element={<ImagePage />} />
+              <Route path={LOCATION.PRODUCT} element={<ProductListPage />} />
+              <Route path={LOCATION.PLAY_LIST} element={<PlayListPage />} />
+              <Route path={LOCATION.CART_EMPLOYEE} element={<CartEmployeePage />} />
+              <Route path={LOCATION.CART_MANAGER} element={<CartManagerPage />} />
+              <Route path={LOCATION.BUTTON_ACCORDION} element={<ButtonAccordions />} />
+              <Route path={LOCATION.FORM} element={<Form />} />
             </Route>
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         )
       }
