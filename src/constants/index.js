@@ -15,6 +15,7 @@ export const LOCATION = {
   CART_MANAGER: "/cart-manager",
   BUTTON_ACCORDION: "/button-accordion",
   FORM: "/form",
+  DEMO: "/demo",
 };
 
 export const NON_AUTH = [

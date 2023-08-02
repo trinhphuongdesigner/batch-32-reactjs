@@ -9,6 +9,7 @@ import LoginPage from 'pages/login';
 import PlayListPage from 'pages/playList';
 import ProductListPage from 'pages/products';
 import ProductDetailPage from 'pages/productDetail';
+import DemoPage from 'pages/demo';
 
 import ButtonAccordions from 'components/buttonAccordions';
 import Form from 'components/form';
@@ -56,6 +57,7 @@ function App() { // = Home Page
               <Route path={LOCATION.CART_MANAGER} element={<CartManagerPage />} />
               <Route path={LOCATION.BUTTON_ACCORDION} element={<ButtonAccordions />} />
               <Route path={LOCATION.FORM} element={<Form />} />
+              <Route path={LOCATION.DEMO} element={<DemoPage />} />
             </Route>
 
             <Route index path={LOCATION.LOGIN} element={<LoginPage />} />
