@@ -8,9 +8,6 @@ import CounterLabel from 'components/counter/CounterLabel';
 function Header(props) {
   const location = useLocation();
 
-  console.log('««««« location »»»»»', 
-  );
-
   return (
     <header className="App-header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">

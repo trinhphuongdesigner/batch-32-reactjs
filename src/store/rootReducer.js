@@ -1,16 +1,12 @@
 import { combineReducers } from 'redux';
 
 import counterReducer from './counter/reducer';
-// import todoReducer from './todo/reducer';
-// import bankReducer from './BankApp/reducers';
-// import userReducer from './UsersApp/reducers';
+import todoReducer from './todo/reducer';
 
 // COMBINE MANY REDUCERS
 const rootReducer = combineReducers({
-  counterReducer, // Ngăn thực phẩm
-  // todoReducer,
-  // bankReducer,
-  // userReducer, // Ngăn chứa vật phẩm khác
+  counterReducer,
+  todoReducer,
 });
 
 export default rootReducer;

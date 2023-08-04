@@ -10,12 +10,13 @@ import PlayListPage from 'pages/playList';
 import ProductListPage from 'pages/products';
 import ProductDetailPage from 'pages/productDetail';
 import DemoPage from 'pages/demo';
+import TodoPage from 'pages/todo';
 
 import ButtonAccordions from 'components/buttonAccordions';
 import Form from 'components/form';
-import AuthLayout from 'components/layer/auth';
+import AuthLayout from 'components/layout/auth';
 import RegisterPage from 'pages/register';
-import NonAuthLayout from 'components/layer/nonAuth';
+import NonAuthLayout from 'components/layout/nonAuth';
 import { axiosClient } from 'helper/axiosClient';
 import { DEFAULT, LOCATION } from 'constants/index';
 import NotFoundPage from 'pages/404';
@@ -58,6 +59,7 @@ function App() { // = Home Page
               <Route path={LOCATION.BUTTON_ACCORDION} element={<ButtonAccordions />} />
               <Route path={LOCATION.FORM} element={<Form />} />
               <Route path={LOCATION.DEMO} element={<DemoPage />} />
+              <Route path={LOCATION.TODO} element={<TodoPage />} />
             </Route>
 
             <Route index path={LOCATION.LOGIN} element={<LoginPage />} />

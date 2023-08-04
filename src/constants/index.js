@@ -15,6 +15,7 @@ export const LOCATION = {
   CART_MANAGER: "/cart-manager",
   BUTTON_ACCORDION: "/button-accordion",
   FORM: "/form",
+  TODO: "/todo",
   DEMO: "/demo",
 };
 
@@ -57,5 +58,9 @@ export const AUTH = [
   {
     path: LOCATION.FORM,
     title: "Form",
+  },
+  {
+    path: LOCATION.TODO,
+    title: "Todo",
   },
 ]
