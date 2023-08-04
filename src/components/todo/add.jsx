@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addMissionAction } from 'store/todo/action';
+import { useDispatch, useSelector } from 'react-redux';
+
+import Loading from 'components/loading';
+
+import { addMissionAction, addMissionSuccessAction } from 'store/todo/action';
 
 function Add(props) {
   const dispatch = useDispatch();
+  const isLoadingAdd = useSelector((state) => state.todoReducer.isLoadingAdd);
+
   const [mission, setMission] = useState('');
 
   const onChange = (e) => {
@@ -11,16 +16,22 @@ function Add(props) {
   };
 
   const onAddMission = () => {
-    dispatch(addMissionAction(mission))
+    dispatch(addMissionAction());
 
-    setMission('');
+    setTimeout(() => {
+      dispatch(addMissionSuccessAction(mission))
+  
+      setMission('');
+    }, 1000)
   };
 
   const onKeyDown = (e) => {
-    if (e.keyCode === 13 && mission) {
+    if (e.keyCode === 13 && mission && !isLoadingAdd) {
       onAddMission()
     }
   };
+
+  console.log('««««« isLoadingAdd »»»»»', isLoadingAdd);
 
   return (
     <div className="input-group mb-3">
@@ -34,8 +45,10 @@ function Add(props) {
       />
 
       <div className="input-group-append">
-        <button className="btn btn-outline-primary" type="button" onClick={onAddMission} disabled={!mission}>
-          <i className="fa-solid fa-plus" />
+        <button className="btn btn-outline-primary d-flex justify-content-center align-items-center" type="button" onClick={onAddMission} disabled={!mission || isLoadingAdd}>
+          {
+            isLoadingAdd ? <Loading /> : <i className="fa-solid fa-plus" />
+          }
         </button>
       </div>
     </div>

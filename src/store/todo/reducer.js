@@ -3,11 +3,16 @@ import * as ActionTypes from './actionTypes';
 // DEFAULT STATE
 const defaultState = {
   missions: [],
+  isLoadingAdd: false,
 };
 
 const todoReducer = (state = defaultState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_MISSION: {
+      return { ...state, isLoadingAdd: true };
+    }
+
+    case ActionTypes.ADD_MISSION_SUCCESS: {
       const newData = [
         ...state.missions,
         {
@@ -16,7 +21,11 @@ const todoReducer = (state = defaultState, action) => {
         }
       ];
 
-      return { ...state, missions: newData };
+      return { ...state, missions: newData, isLoadingAdd: false };
+    }
+
+    case ActionTypes.ADD_MISSION_FAILED: {
+      return { ...state, isLoadingAdd: false };
     }
 
     default:
