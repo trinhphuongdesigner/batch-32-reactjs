@@ -22,7 +22,7 @@ function Add(props) {
       dispatch(addMissionSuccessAction(mission))
   
       setMission('');
-    }, 1000)
+    }, 100)
   };
 
   const onKeyDown = (e) => {

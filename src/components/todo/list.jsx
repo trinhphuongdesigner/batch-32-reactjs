@@ -1,13 +1,13 @@
+import Loading from 'components/loading';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { deleteMissionAction, deleteMissionSuccessAction } from 'store/todo/action';
 
 function List(props) {
   const missions = useSelector((state) => state.todoReducer.missions);
 
-  console.log('««««« missions »»»»»', missions);
-
   return missions.length > 0 ? (
-    missions.map((m) => <ListItem key={m.id} content={m.name} />)
+    missions.map((m) => <ListItem key={m.id} content={m.name} id={m.id} />)
   ) : (
     <ListItem classes="text-danger" content="Không có nhiệm vụ" isHiddenButton />
   );
@@ -15,7 +15,18 @@ function List(props) {
 
 export default List;
 
-function ListItem({ content, classes, isHiddenButton = false }) {
+function ListItem({ id, content, classes, isHiddenButton = false }) {
+  const dispatch = useDispatch();
+  const loadingDelete = useSelector((state) => state.todoReducer.loadingDelete);
+
+  const onDeleteMission = () => {
+    dispatch(deleteMissionAction(id));
+
+    setTimeout(() => {
+      dispatch(deleteMissionSuccessAction(id))
+      }, 2000)
+  };
+
   return (
     <div className="input-group mb-3">
       <input
@@ -28,8 +39,10 @@ function ListItem({ content, classes, isHiddenButton = false }) {
 
       {!isHiddenButton && (
         <div className="input-group-append">
-          <button className="btn btn-outline-danger" type="button">
-            <i className="fa-solid fa-trash" />
+          <button className="btn btn-outline-danger" type="button" disabled={loadingDelete.includes(id)} onClick={onDeleteMission}>
+            {
+              loadingDelete.includes(id) ? <Loading /> : <i className="fa-solid fa-trash" />
+            }
           </button>
         </div>
       )}

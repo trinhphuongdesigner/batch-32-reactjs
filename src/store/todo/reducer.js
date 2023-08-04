@@ -4,6 +4,7 @@ import * as ActionTypes from './actionTypes';
 const defaultState = {
   missions: [],
   isLoadingAdd: false,
+  loadingDelete: [],
 };
 
 const todoReducer = (state = defaultState, action) => {
@@ -26,6 +27,22 @@ const todoReducer = (state = defaultState, action) => {
 
     case ActionTypes.ADD_MISSION_FAILED: {
       return { ...state, isLoadingAdd: false };
+    }
+
+    case ActionTypes.DELETE_MISSION: {
+      return { ...state, loadingDelete: [...state.loadingDelete, action.payload] };
+    }
+
+    case ActionTypes.DELETE_MISSION_SUCCESS: {
+      const newData = state.missions.filter((item) => item.id !== action.payload);
+      const newLoading = state.loadingDelete.filter((item) => item !== action.payload);
+
+      return { ...state, missions: newData, loadingDelete: newLoading };
+    }
+
+    // CHƯA COVER TRƯỜNG HỢP NÀY
+    case ActionTypes.DELETE_MISSION_FAILED: {
+      return { ...state };
     }
 
     default:
