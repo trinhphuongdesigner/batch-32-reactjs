@@ -31,8 +31,6 @@ function Add(props) {
     }
   };
 
-  console.log('««««« isLoadingAdd »»»»»', isLoadingAdd);
-
   return (
     <div className="input-group mb-3">
       <input
@@ -42,6 +40,7 @@ function Add(props) {
         value={mission}
         onChange={onChange}
         onKeyDown={onKeyDown}
+        disabled={isLoadingAdd}
       />
 
       <div className="input-group-append">

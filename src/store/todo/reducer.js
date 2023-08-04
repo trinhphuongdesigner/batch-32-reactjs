@@ -5,6 +5,7 @@ const defaultState = {
   missions: [],
   isLoadingAdd: false,
   loadingDelete: [],
+  loadingUpdate: [],
 };
 
 const todoReducer = (state = defaultState, action) => {
@@ -27,6 +28,30 @@ const todoReducer = (state = defaultState, action) => {
 
     case ActionTypes.ADD_MISSION_FAILED: {
       return { ...state, isLoadingAdd: false };
+    }
+
+    case ActionTypes.UPDATE_MISSION: {
+      return { ...state, loadingUpdate: [...state.loadingUpdate, action.payload] };
+    }
+
+    case ActionTypes.UPDATE_MISSION_SUCCESS: {
+      const newData = state.missions.map((item) => {
+        if (item.id !== action.payload.id) {
+          return { ...item, mission: action.payload.mission };
+        }
+
+        return item;
+      });
+
+      const newLoading = state.loadingUpdate.filter((item) => item !== action.payload.id);
+
+      return { ...state, missions: newData, loadingUpdate: newLoading };
+    }
+
+    // CHƯA COVER TRƯỜNG HỢP NÀY
+    case ActionTypes.UPDATE_MISSION_FAILED: {
+      const newLoading = state.loadingUpdate.filter((item) => item !== action.payload.id);
+      return { ...state, loadingUpdate: newLoading };
     }
 
     case ActionTypes.DELETE_MISSION: {

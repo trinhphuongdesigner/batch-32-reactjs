@@ -13,6 +13,20 @@ export const addMissionFailedAction = () => ({
   type: ActionTypes.ADD_MISSION_FAILED, // ACTION TYPE
 });
 
+export const updateMissionAction = (id) => ({
+  type: ActionTypes.UPDATE_MISSION,
+  payload: id,
+});
+
+export const updateMissionSuccessAction = (payload) => ({
+  type: ActionTypes.UPDATE_MISSION_SUCCESS, // ACTION TYPE
+  payload, // PARAMETER
+});
+
+export const updateMissionFailedAction = () => ({
+  type: ActionTypes.UPDATE_MISSION_FAILED, // ACTION TYPE
+});
+
 export const deleteMissionAction = (id) => ({
   type: ActionTypes.DELETE_MISSION,
   payload: id, //id PARAMETER

@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { AUTH, LOCATION } from 'constants/index';
 
 import './header.css';
-import CounterLabel from 'components/counter/CounterLabel';
 
 function Header(props) {
   const location = useLocation();
@@ -11,8 +10,6 @@ function Header(props) {
   return (
     <header className="App-header">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <CounterLabel />
-
         <Link className="navbar-brand" to={LOCATION.HOME}>
           Trang chủ
         </Link>
