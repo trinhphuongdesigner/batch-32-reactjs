@@ -6,6 +6,7 @@ const defaultState = {
   isLoadingAdd: false,
   loadingDelete: [],
   loadingUpdate: [],
+  selected: [],
 };
 
 const todoReducer = (state = defaultState, action) => {
@@ -68,6 +69,66 @@ const todoReducer = (state = defaultState, action) => {
     // CHƯA COVER TRƯỜNG HỢP NÀY
     case ActionTypes.DELETE_MISSION_FAILED: {
       return { ...state };
+    }
+
+    // CHƯA COVER TRƯỜNG HỢP NÀY
+    case ActionTypes.CHECKED_MISSION: {
+      let newList = [];
+
+      if (state.selected.length > 0) {
+        const checkedMission = state.selected.find((item) => item === action.payload);
+        if (checkedMission) {
+          newList = state.selected.filter((item) => item !== action.payload);
+        } else {
+          newList = [
+            ...state.selected,
+            action.payload,
+          ]
+        }
+      } else {
+        newList = [
+          ...state.selected,
+          action.payload,
+        ]
+      }
+
+      return {
+        ...state,
+        selected: newList,
+      };
+    }
+
+    case ActionTypes.CHECKED_ALL_MISSION: {
+      let checkList = [];
+
+      if (state.selected.length < state.missions.length) {
+        // state.missions.forEach((item) => checkList.push(item.id))
+        checkList = state.missions.map((item) => item.id);
+      }
+
+      return {
+        ...state,
+        selected: checkList,
+      }
+    }
+
+    case ActionTypes.DELETE_SELECTED_MISSION: {
+      return {
+        ...state,
+        loadingDelete: state.selected,
+      }
+    }
+
+    case ActionTypes.DELETE_SELECTED_MISSION_SUCCESS: {
+
+      const newList = state.missions.filter((item) => !state.selected.includes(item.id));
+
+      return {
+        ...state,
+        missions: newList,
+        loadingDelete: [],
+        selected: [],
+      }
     }
 
     default:

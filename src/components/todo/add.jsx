@@ -40,7 +40,7 @@ function Add(props) {
         value={mission}
         onChange={onChange}
         onKeyDown={onKeyDown}
-        disabled={isLoadingAdd}
+        // disabled={isLoadingAdd}
       />
 
       <div className="input-group-append">

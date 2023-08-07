@@ -1,7 +1,8 @@
 import Loading from 'components/loading';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
+  checkMissionAction,
   deleteMissionAction,
   deleteMissionSuccessAction,
   updateMissionAction,
@@ -10,9 +11,17 @@ import {
 
 function List(props) {
   const missions = useSelector((state) => state.todoReducer.missions);
+  const selected = useSelector((state) => state.todoReducer.selected);
 
   return missions.length > 0 ? (
-    missions.map((m) => <ListItem key={m.id} content={m.name} id={m.id} />)
+    missions.map((m) => (
+      <ListItem
+        key={m.id}
+        content={m.name}
+        id={m.id}
+        isChecked={selected.includes(m.id)}
+      />
+    ))
   ) : (
     <>
       <ListItem
@@ -26,7 +35,7 @@ function List(props) {
 
 export default List;
 
-function ListItem({ id, content, classes, isHiddenButton = false }) {
+function ListItem({ id, content, classes, isChecked, isHiddenButton = false }) {
   const [mission, setMission] = useState('');
 
   const dispatch = useDispatch();
@@ -59,12 +68,16 @@ function ListItem({ id, content, classes, isHiddenButton = false }) {
     }
   };
 
+  const onSelectMission = useCallback(() => {
+    dispatch(checkMissionAction(id));
+  }, [dispatch, id]);
+
   useEffect(() => {
     setMission(content);
   }, [content]);
 
   return (
-    <div className="input-group mb-3">
+    <div className="input-group mb-3 d-flex align-items-center">
       <input
         type="text"
         className={`form-control ${classes}`}
@@ -75,33 +88,41 @@ function ListItem({ id, content, classes, isHiddenButton = false }) {
       />
 
       {!isHiddenButton && (
-        <div className="input-group-append">
-          <button
-            className="btn btn-outline-danger"
-            type="button"
-            disabled={loadingDelete.includes(id)}
-            onClick={onDeleteMission}
-          >
-            {loadingDelete.includes(id) ? (
-              <Loading />
-            ) : (
-              <i className="fa-solid fa-trash" />
-            )}
-          </button>
+        <>
+          <input
+            className="form-check-input"
+            type="checkbox"
+            onChange={onSelectMission}
+            checked={isChecked}
+          />
+          <div className="input-group-append">
+            <button
+              className="btn btn-outline-danger"
+              type="button"
+              disabled={loadingDelete.includes(id)}
+              onClick={onDeleteMission}
+            >
+              {loadingDelete.includes(id) ? (
+                <Loading />
+              ) : (
+                <i className="fa-solid fa-trash" />
+              )}
+            </button>
 
-          <button
-            className="btn btn-outline-info"
-            type="button"
-            disabled={loadingUpdate.includes(id)}
-            onClick={onUpdateMission}
-          >
-            {loadingUpdate.includes(id) ? (
-              <Loading />
-            ) : (
-              <i className="fas fa-edit" />
-            )}
-          </button>
-        </div>
+            <button
+              className="btn btn-outline-info"
+              type="button"
+              disabled={loadingUpdate.includes(id)}
+              onClick={onUpdateMission}
+            >
+              {loadingUpdate.includes(id) ? (
+                <Loading />
+              ) : (
+                <i className="fas fa-edit" />
+              )}
+            </button>
+          </div>
+        </>
       )}
     </div>
   );
