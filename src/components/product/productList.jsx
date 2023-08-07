@@ -1,41 +1,37 @@
+import Loading from 'components/loading';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { axiosClient } from 'helper/axiosClient';
+import { getProductsAction } from 'store/product/action';
 
 function ProductList(props) {
-  const [products, setProduct] = useState([]);
+  const dispatch = useDispatch();
 
-  const getData = async () => {
-    try {
-      const response = await axiosClient('/user/products');
-
-      setProduct(response.data.payload)
-    } catch (error) {
-      console.log('««««« error »»»»»', error);
-    }
-  };
+  const isLoading = useSelector((state) => state.productReducer.isLoading);
+  const products = useSelector((state) => state.productReducer.products);
 
   useEffect(() => {
-    getData();
-  }, []);
+    dispatch(getProductsAction());
+  }, [dispatch]);
 
   return (
     <ul>
-      {
-        products.length > 0 ? (
-          products.map((item) => {
-            return (
-              <>
+      {isLoading ? (
+        <Loading />
+      ) : products.length > 0 ? (
+        products.map((item) => {
+          return (
+            <>
               <li key={item.id}>
                 <span>{item.name}: </span>
                 <span>{item.price}đ</span>
               </li>
-              
-              </>
-            )
-          })
-        ) : <p>Không có sản phẩm</p>
-      }
+            </>
+          );
+        })
+      ) : (
+        <p>Không có sản phẩm</p>
+      )}
     </ul>
   );
 }
